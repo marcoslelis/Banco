@@ -167,14 +167,15 @@ public class Menu {
 			} // switch usuario/gerente
 			else if(usuario == 2)
 			{
+				System.out.println("Digite o Login do gerente");
+				login = ler.nextInt();
+				System.out.println("Digite a senha do gerente");
+				senha = ler.nextInt();
+				
+				auxInt = fazerLoginGerente(login, senha, ListaGerente);
 				do
 				{
-					System.out.println("Digite o Login do gerente");
-					login = ler.nextInt();
-					System.out.println("Digite a senha do gerente");
-					senha = ler.nextInt();
-					
-					auxInt = fazerLoginGerente(login, senha, ListaGerente);
+					sairGerente = 0;
 					
 					if(auxInt == 999)
 					{
@@ -329,6 +330,7 @@ public class Menu {
 							c2 = new ContaUsuario(auxInt, auxInt2, nome, RG, cidade, estado, pais, "Gerente");
 							ListaGerente.get(posicaoGerente).ListaUsuario.add(c2);
 							System.out.println("Cadastro de nova conta de usuairo realizado com sucesso!");
+							break;
 					
 					case 8: System.out.println("Digite o RG do usuario que deseja efetuar a operacao");
 							RG = ler.nextInt();
@@ -350,6 +352,11 @@ public class Menu {
 							}
 							else
 								System.out.println("Senha incorreta!");
+							
+							break;
+							
+					case 9: sairGerente = 1;
+							
 					}
 					
 				}while(sairGerente != 1);
@@ -490,8 +497,8 @@ public class Menu {
 			}
 		}
 		
-		System.out.println("Login nao encontrado!");
-		return 0;
+		System.out.println("Usuario nao encontrado!");
+		return 999;
 	}
 
 }
